@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\HomeController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,3 +21,5 @@ Route::get('/', function () {
 
 Route::get('/admin', [AdminController::class,'index'])->name('admin.index');
 
+Route::get('/home', [HomeController::class,'index'])->name('visitor.index');
+Route::get('/home/resources/download/{resourceId}', [HomeController::class,'download'])->name('visitor.download');

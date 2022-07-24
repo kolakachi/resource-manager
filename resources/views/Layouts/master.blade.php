@@ -38,10 +38,10 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link {{ ($page == "home")? 'active': ''}}" aria-current="page" href="#">Home</a>
+                <a class="nav-link {{ ($page == "home")? 'active': ''}}" aria-current="page" href="{{ route('visitor.index') }}">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link {{ ($page == "admin")? 'active': ''}}" href="#">Admin</a>
+                <a class="nav-link {{ ($page == "admin")? 'active': ''}}" href="{{ route('admin.index') }}">Admin</a>
               </li>
             </ul>
           </div>

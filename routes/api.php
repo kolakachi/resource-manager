@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 
 /*
@@ -24,3 +25,5 @@ Route::get('/admin/list', [AdminController::class,'list'])->name('admin.list');
 Route::delete('/admin/delete', [AdminController::class, 'delete'])->name('admin.delete');    
 Route::post('/admin/update', [AdminController::class, 'update'])->name('admin.update');    
 
+
+Route::get('/resources/list', [HomeController::class,'list'])->name('admin.list');

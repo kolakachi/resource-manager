@@ -10,6 +10,7 @@ require('./bootstrap');
 import "element-ui/lib/theme-chalk/index.css";
 
 import AdminView from "@components/Admin.vue";
+import HomeView from "@components/Home.vue";
 
 
 window.Vue = require('vue').default;
@@ -26,6 +27,7 @@ window.Vue = require('vue').default;
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component("admin-view", AdminView);
+Vue.component("home-view", HomeView);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
