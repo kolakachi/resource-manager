@@ -2,7 +2,7 @@
     <div class="container">
         <h3 class="mb-5 font-weight-light text-uppercase">Resource Management Page</h3>
         <div class="row">
-            <div class="card col-sm-2 mb-2" data-bs-toggle="modal" data-bs-target="#addModal">
+            <div class="card col-sm-2 mb-2" data-bs-toggle="modal" data-bs-target="#addModal" style="min-height:126px">
                 <div class="card-body admin-add-card">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z"/></svg>
                 </div>
@@ -178,7 +178,6 @@
 <script>
 import axios from 'axios';
 import { Notification } from "element-ui";
-import { Dropzone } from "dropzone";
 
 export default {
     name: "admin",
