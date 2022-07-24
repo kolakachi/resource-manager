@@ -158,7 +158,7 @@
                                         <div class="ms-2 me-auto">
                                             <div class="fw-bold">{{ resourceEdit.file_name }}</div>
                                         </div>
-                                        <span class="badge bg-primary rounded-pill" id="file-upload" @click="updateFile()">remove</span>
+                                        <span class="badge bg-primary rounded-pill" id="file-upload" @click="changeFile(true)">remove</span>
                                     </li>
                                 </ul>
                             </div>
