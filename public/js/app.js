@@ -7124,6 +7124,67 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -7152,6 +7213,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         link: '',
         open_in_new_tab: false
       },
+      errorBag: {},
+      editErrorBag: {},
       resources: [],
       url: {
         store: '/api/admin/store',
@@ -7228,13 +7291,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         _this2.isLoading = false;
 
         if (error.response) {
+          if (error.response.status == 422) {
+            _this2.errorBag = error.response.data.error_bag;
+          }
+
           (0,element_ui__WEBPACK_IMPORTED_MODULE_1__.Notification)({
-            title: 'error',
+            type: 'error',
+            title: 'Error',
             message: error.response.data.message
           });
         } else {
           (0,element_ui__WEBPACK_IMPORTED_MODULE_1__.Notification)({
-            title: 'error',
+            type: 'error',
+            title: 'Error',
             message: "Unable to complete request. Try again Later"
           });
         }
@@ -7310,12 +7379,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
         if (error.response) {
           (0,element_ui__WEBPACK_IMPORTED_MODULE_1__.Notification)({
-            title: 'error',
+            type: 'error',
+            title: 'Error',
             message: error.response.data.message
           });
         } else {
           (0,element_ui__WEBPACK_IMPORTED_MODULE_1__.Notification)({
-            title: 'error',
+            type: 'error',
+            title: 'Error',
             message: "Unable to complete request. Try again Later"
           });
         }
@@ -7361,13 +7432,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         _this5.isLoading = false;
 
         if (error.response) {
+          if (error.response.status == 422) {
+            _this5.editErrorBag = error.response.data.error_bag;
+          }
+
           (0,element_ui__WEBPACK_IMPORTED_MODULE_1__.Notification)({
-            title: 'error',
+            type: 'error',
+            title: 'Error',
             message: error.response.data.message
           });
         } else {
           (0,element_ui__WEBPACK_IMPORTED_MODULE_1__.Notification)({
-            title: 'error',
+            type: 'error',
+            title: 'Error',
             message: "Unable to complete request. Try again Later"
           });
         }
@@ -90330,6 +90407,28 @@ var render = function () {
                         },
                       },
                     }),
+                    _vm._v(" "),
+                    _vm.errorBag.title
+                      ? _c("div", [
+                          _c(
+                            "ul",
+                            _vm._l(
+                              _vm.errorBag.title,
+                              function (titleError, titleIndex) {
+                                return _c(
+                                  "li",
+                                  {
+                                    key: titleIndex,
+                                    staticClass: "text-danger",
+                                  },
+                                  [_vm._v(_vm._s(titleError))]
+                                )
+                              }
+                            ),
+                            0
+                          ),
+                        ])
+                      : _vm._e(),
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group mt-2" }, [
@@ -90382,6 +90481,28 @@ var render = function () {
                         ]),
                       ]
                     ),
+                    _vm._v(" "),
+                    _vm.errorBag.type
+                      ? _c("div", [
+                          _c(
+                            "ul",
+                            _vm._l(
+                              _vm.errorBag.type,
+                              function (typeError, typeIndex) {
+                                return _c(
+                                  "li",
+                                  {
+                                    key: typeIndex,
+                                    staticClass: "text-danger",
+                                  },
+                                  [_vm._v(_vm._s(typeError))]
+                                )
+                              }
+                            ),
+                            0
+                          ),
+                        ])
+                      : _vm._e(),
                   ]),
                   _vm._v(" "),
                   _vm.resource.type == "link"
@@ -90414,6 +90535,28 @@ var render = function () {
                               },
                             },
                           }),
+                          _vm._v(" "),
+                          _vm.errorBag.link
+                            ? _c("div", [
+                                _c(
+                                  "ul",
+                                  _vm._l(
+                                    _vm.errorBag.link,
+                                    function (linkError, linkIndex) {
+                                      return _c(
+                                        "li",
+                                        {
+                                          key: linkIndex,
+                                          staticClass: "text-danger",
+                                        },
+                                        [_vm._v(_vm._s(linkError))]
+                                      )
+                                    }
+                                  ),
+                                  0
+                                ),
+                              ])
+                            : _vm._e(),
                         ]),
                         _vm._v(" "),
                         _c(
@@ -90535,7 +90678,51 @@ var render = function () {
                         }),
                       ]),
                       _vm._v(" "),
+                      _vm.errorBag.description
+                        ? _c("div", [
+                            _c(
+                              "ul",
+                              _vm._l(
+                                _vm.errorBag.description,
+                                function (descriptionError, descriptionIndex) {
+                                  return _c(
+                                    "li",
+                                    {
+                                      key: descriptionIndex,
+                                      staticClass: "text-danger",
+                                    },
+                                    [_vm._v(_vm._s(descriptionError))]
+                                  )
+                                }
+                              ),
+                              0
+                            ),
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
                       _vm._m(1),
+                      _vm._v(" "),
+                      _vm.errorBag.html
+                        ? _c("div", [
+                            _c(
+                              "ul",
+                              _vm._l(
+                                _vm.errorBag.html,
+                                function (htmlError, htmlIndex) {
+                                  return _c(
+                                    "li",
+                                    {
+                                      key: htmlIndex,
+                                      staticClass: "text-danger",
+                                    },
+                                    [_vm._v(_vm._s(htmlError))]
+                                  )
+                                }
+                              ),
+                              0
+                            ),
+                          ])
+                        : _vm._e(),
                     ]
                   ),
                   _vm._v(" "),
@@ -90601,6 +90788,28 @@ var render = function () {
                                   [_vm._v("remove")]
                                 ),
                               ]
+                            ),
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.errorBag.file_upload
+                        ? _c("div", [
+                            _c(
+                              "ul",
+                              _vm._l(
+                                _vm.errorBag.file_upload,
+                                function (file_uploadError, file_uploadIndex) {
+                                  return _c(
+                                    "li",
+                                    {
+                                      key: file_uploadIndex,
+                                      staticClass: "text-danger",
+                                    },
+                                    [_vm._v(_vm._s(file_uploadError))]
+                                  )
+                                }
+                              ),
+                              0
                             ),
                           ])
                         : _vm._e(),
@@ -90769,6 +90978,28 @@ var render = function () {
                         },
                       },
                     }),
+                    _vm._v(" "),
+                    _vm.editErrorBag.title
+                      ? _c("div", [
+                          _c(
+                            "ul",
+                            _vm._l(
+                              _vm.editErrorBag.title,
+                              function (editTitleError, editTitleIndex) {
+                                return _c(
+                                  "li",
+                                  {
+                                    key: editTitleIndex,
+                                    staticClass: "text-danger",
+                                  },
+                                  [_vm._v(_vm._s(editTitleError))]
+                                )
+                              }
+                            ),
+                            0
+                          ),
+                        ])
+                      : _vm._e(),
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group mt-2" }, [
@@ -90821,6 +91052,28 @@ var render = function () {
                         ]),
                       ]
                     ),
+                    _vm._v(" "),
+                    _vm.editErrorBag.type
+                      ? _c("div", [
+                          _c(
+                            "ul",
+                            _vm._l(
+                              _vm.editErrorBag.type,
+                              function (editTypeError, editTypeIndex) {
+                                return _c(
+                                  "li",
+                                  {
+                                    key: editTypeIndex,
+                                    staticClass: "text-danger",
+                                  },
+                                  [_vm._v(_vm._s(editTypeError))]
+                                )
+                              }
+                            ),
+                            0
+                          ),
+                        ])
+                      : _vm._e(),
                   ]),
                   _vm._v(" "),
                   _vm.resourceEdit.type == "link"
@@ -90854,6 +91107,28 @@ var render = function () {
                             },
                           }),
                         ]),
+                        _vm._v(" "),
+                        _vm.editErrorBag.link
+                          ? _c("div", [
+                              _c(
+                                "ul",
+                                _vm._l(
+                                  _vm.editErrorBag.link,
+                                  function (editLinkError, editLinkIndex) {
+                                    return _c(
+                                      "li",
+                                      {
+                                        key: editLinkIndex,
+                                        staticClass: "text-danger",
+                                      },
+                                      [_vm._v(_vm._s(editLinkError))]
+                                    )
+                                  }
+                                ),
+                                0
+                              ),
+                            ])
+                          : _vm._e(),
                         _vm._v(" "),
                         _c(
                           "div",
@@ -90976,7 +91251,54 @@ var render = function () {
                         }),
                       ]),
                       _vm._v(" "),
+                      _vm.editErrorBag.description
+                        ? _c("div", [
+                            _c(
+                              "ul",
+                              _vm._l(
+                                _vm.editErrorBag.description,
+                                function (
+                                  editDescriptionError,
+                                  editDescriptionIndex
+                                ) {
+                                  return _c(
+                                    "li",
+                                    {
+                                      key: editDescriptionIndex,
+                                      staticClass: "text-danger",
+                                    },
+                                    [_vm._v(_vm._s(editDescriptionError))]
+                                  )
+                                }
+                              ),
+                              0
+                            ),
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
                       _vm._m(3),
+                      _vm._v(" "),
+                      _vm.editErrorBag.html
+                        ? _c("div", [
+                            _c(
+                              "ul",
+                              _vm._l(
+                                _vm.editErrorBag.html,
+                                function (editHTMLError, editHTMLIndex) {
+                                  return _c(
+                                    "li",
+                                    {
+                                      key: editHTMLIndex,
+                                      staticClass: "text-danger",
+                                    },
+                                    [_vm._v(_vm._s(editHTMLError))]
+                                  )
+                                }
+                              ),
+                              0
+                            ),
+                          ])
+                        : _vm._e(),
                     ]
                   ),
                   _vm._v(" "),
@@ -91042,6 +91364,31 @@ var render = function () {
                                   [_vm._v("remove")]
                                 ),
                               ]
+                            ),
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.editErrorBag.file_name
+                        ? _c("div", [
+                            _c(
+                              "ul",
+                              _vm._l(
+                                _vm.editErrorBag.file_name,
+                                function (
+                                  editFileNameError,
+                                  editFileNameIndex
+                                ) {
+                                  return _c(
+                                    "li",
+                                    {
+                                      key: editFileNameIndex,
+                                      staticClass: "text-danger",
+                                    },
+                                    [_vm._v(_vm._s(editFileNameError))]
+                                  )
+                                }
+                              ),
+                              0
                             ),
                           ])
                         : _vm._e(),

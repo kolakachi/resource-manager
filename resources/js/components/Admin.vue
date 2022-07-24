@@ -33,11 +33,17 @@
                         <h5 class="modal-title" id="exampleModalLabel">Add Resource</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
+                    
                     <form @submit.prevent="storeResource" autocomplete="off">
                         <div class="modal-body">
                             <div class="form-group">
                                 <label>Enter resource title</label>
                                 <input type="text" class="form-control" v-model="resource.title" required>
+                                <div v-if="errorBag.title">
+                                    <ul>
+                                        <li class="text-danger" v-for="(titleError, titleIndex) in errorBag.title" :key="titleIndex">{{titleError}}</li>
+                                    </ul>
+                                </div>
                             </div>
                             <div class="form-group mt-2">
                                 <label>Select resource type</label>
@@ -46,11 +52,21 @@
                                     <option value="html">HTML snippet</option>
                                     <option value="pdf">PDF download</option>
                                 </select>
+                                <div v-if="errorBag.type">
+                                    <ul>
+                                        <li class="text-danger" v-for="(typeError, typeIndex) in errorBag.type" :key="typeIndex">{{typeError}}</li>
+                                    </ul>
+                                </div>
                             </div>
                             <div class="form-group mt-2" v-if="resource.type == 'link'">
                                 <div class="form-group">
                                     <label>Enter resource link</label>
                                     <input type="url" class="form-control" v-model="resource.link" required>
+                                    <div v-if="errorBag.link">
+                                        <ul>
+                                            <li class="text-danger" v-for="(linkError, linkIndex) in errorBag.link" :key="linkIndex">{{linkError}}</li>
+                                        </ul>
+                                    </div>
                                 </div>
                                 <div class="form-check form-switch mt-2" title='Toggle'>
                                     <input type="checkbox" class="form-check-input" id="switch" v-model="resource.open_in_new_tab" />
@@ -62,9 +78,19 @@
                                     <label>Enter resource description</label>
                                     <textarea class="form-control" id="" cols="30" rows="5" v-model="resource.description"></textarea>
                                 </div>
+                                <div v-if="errorBag.description">
+                                    <ul>
+                                        <li class="text-danger" v-for="(descriptionError, descriptionIndex) in errorBag.description" :key="descriptionIndex">{{descriptionError}}</li>
+                                    </ul>
+                                </div>
                                 <div class="form-group mt-2">
                                     <label>Enter resource HTML</label>
                                     <textarea name="" id="codeArea" cols="30" rows="10"></textarea>
+                                </div>
+                                <div v-if="errorBag.html">
+                                    <ul>
+                                        <li class="text-danger" v-for="(htmlError, htmlIndex) in errorBag.html" :key="htmlIndex">{{htmlError}}</li>
+                                    </ul>
                                 </div>
                             </div>
 
@@ -78,6 +104,11 @@
                                         <span class="badge bg-primary rounded-pill" id="file-upload" @click="changeFile()">remove</span>
                                     </li>
                                 </ul>
+                                <div v-if="errorBag.file_upload">
+                                    <ul>
+                                        <li class="text-danger" v-for="(file_uploadError, file_uploadIndex) in errorBag.file_upload" :key="file_uploadIndex">{{file_uploadError}}</li>
+                                    </ul>
+                                </div>
                             </div>
 
                         </div>
@@ -121,6 +152,11 @@
                             <div class="form-group">
                                 <label>Enter resource title</label>
                                 <input type="text" class="form-control" v-model="resourceEdit.title" required>
+                                <div v-if="editErrorBag.title">
+                                    <ul>
+                                        <li class="text-danger" v-for="(editTitleError, editTitleIndex) in editErrorBag.title" :key="editTitleIndex">{{editTitleError}}</li>
+                                    </ul>
+                                </div>
                             </div>
                             <div class="form-group mt-2">
                                 <label>Select resource type</label>
@@ -129,11 +165,21 @@
                                     <option value="html">HTML snippet</option>
                                     <option value="pdf">PDF download</option>
                                 </select>
+                                <div v-if="editErrorBag.type">
+                                    <ul>
+                                        <li class="text-danger" v-for="(editTypeError, editTypeIndex) in editErrorBag.type" :key="editTypeIndex">{{editTypeError}}</li>
+                                    </ul>
+                                </div>
                             </div>
                             <div class="form-group mt-2" v-if="resourceEdit.type == 'link'">
                                 <div class="form-group">
                                     <label>Enter resource link</label>
                                     <input type="url" class="form-control" v-model="resourceEdit.link" required>
+                                </div>
+                                <div v-if="editErrorBag.link">
+                                    <ul>
+                                        <li class="text-danger" v-for="(editLinkError, editLinkIndex) in editErrorBag.link" :key="editLinkIndex">{{editLinkError}}</li>
+                                    </ul>
                                 </div>
                                 <div class="form-check form-switch mt-2" title='Toggle'>
                                     <input type="checkbox" class="form-check-input" id="switch" v-model="resourceEdit.open_in_new_tab" />
@@ -145,9 +191,19 @@
                                     <label>Enter resource description</label>
                                     <textarea class="form-control" id="" cols="30" rows="5" v-model="resourceEdit.description"></textarea>
                                 </div>
+                                <div v-if="editErrorBag.description">
+                                    <ul>
+                                        <li class="text-danger" v-for="(editDescriptionError, editDescriptionIndex) in editErrorBag.description" :key="editDescriptionIndex">{{editDescriptionError}}</li>
+                                    </ul>
+                                </div>
                                 <div class="form-group mt-2">
                                     <label>Enter resource HTML</label>
                                     <textarea name="" id="codeAreaEdit" cols="30" rows="10"></textarea>
+                                </div>
+                                <div v-if="editErrorBag.html">
+                                    <ul>
+                                        <li class="text-danger" v-for="(editHTMLError, editHTMLIndex) in editErrorBag.html" :key="editHTMLIndex">{{editHTMLError}}</li>
+                                    </ul>
                                 </div>
                             </div>
 
@@ -161,6 +217,11 @@
                                         <span class="badge bg-primary rounded-pill" id="file-upload" @click="changeFile(true)">remove</span>
                                     </li>
                                 </ul>
+                                <div v-if="editErrorBag.file_name">
+                                    <ul>
+                                        <li class="text-danger" v-for="(editFileNameError, editFileNameIndex) in editErrorBag.file_name" :key="editFileNameIndex">{{editFileNameError}}</li>
+                                    </ul>
+                                </div>
                             </div>
 
                         </div>
@@ -205,6 +266,8 @@ export default {
                 link:'',
                 open_in_new_tab:false
             },
+            errorBag:{},
+            editErrorBag:{},
             resources:[],
             url:{
                 store: '/api/admin/store',
@@ -257,13 +320,18 @@ export default {
                 .catch((error) => {
                     this.isLoading = false;
                     if (error.response) {
+                        if(error.response.status == 422){
+                            this.errorBag = error.response.data.error_bag
+                        }
                         Notification({
-                            title: 'error',
+                            type: 'error',
+                            title: 'Error',
                             message: error.response.data.message
                         });
                     }else{
                         Notification({
-                            title: 'error',
+                            type: 'error',
+                            title: 'Error',
                             message: "Unable to complete request. Try again Later"
                         });
                     }
@@ -329,12 +397,14 @@ export default {
                     this.isLoading = false;
                     if (error.response) {
                         Notification({
-                            title: 'error',
+                            type: 'error',
+                            title: 'Error',
                             message: error.response.data.message
                         });
                     }else{
                         Notification({
-                            title: 'error',
+                            type: 'error',
+                            title: 'Error',
                             message: "Unable to complete request. Try again Later"
                         });
                     }
@@ -375,13 +445,18 @@ export default {
                 .catch((error) => {
                     this.isLoading = false;
                     if (error.response) {
+                        if(error.response.status == 422){
+                            this.editErrorBag = error.response.data.error_bag
+                        }
                         Notification({
-                            title: 'error',
+                            type: 'error',
+                            title: 'Error',
                             message: error.response.data.message
                         });
                     }else{
                         Notification({
-                            title: 'error',
+                            type: 'error',
+                            title: 'Error',
                             message: "Unable to complete request. Try again Later"
                         });
                     }

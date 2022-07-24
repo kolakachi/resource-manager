@@ -49,7 +49,7 @@ class AdminController extends Controller
                     break;
             }
         }catch (Exception $error) {
-            Log::info('AdminController@add error messages: ' . $error->getMessage());
+            Log::info('AdminController@add error_bag: ' . $error->getMessage());
             $message = "Unable to complete request.";
             return response()->json(['message' => $message], 500);
         }
@@ -59,7 +59,10 @@ class AdminController extends Controller
         $this->rules['link'] = 'required|regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/';
         $validator = Validator::make($request->all() , $this->rules); 
         if ($validator->fails()) {
-            return response()->json(['message' => 'unable to complete request', 'error messages' => $validator->errors()]);
+            return response()->json([
+                'message' => 'Unable to complete request', 
+                'error_bag' => $validator->errors()
+            ], 422);
         }
 
         $resource = new ResourceModel();
@@ -80,7 +83,10 @@ class AdminController extends Controller
         $this->rules['html'] = 'required';
         $validator = Validator::make($request->all() , $this->rules); 
         if ($validator->fails()) {
-            return response()->json(['message' => 'unable to complete request', 'error messages' => $validator->errors()]);
+            return response()->json([
+                'message' => 'Unable to complete request', 
+                'error_bag' => $validator->errors()
+            ], 422);
         }
 
         $resource = new ResourceModel();
@@ -100,7 +106,10 @@ class AdminController extends Controller
         $this->rules['file_upload'] = 'required|mimes:pdf';
         $validator = Validator::make($request->all() , $this->rules); 
         if ($validator->fails()) {
-            return response()->json(['message' => 'unable to complete request', 'error messages' => $validator->errors()]);
+            return response()->json([
+                'message' => 'Unable to complete request', 
+                'error_bag' => $validator->errors()
+            ], 422);
         }
 
         $resource = new ResourceModel();
@@ -170,7 +179,7 @@ class AdminController extends Controller
                     break;
             }
         }catch (Exception $error) {
-            Log::info('AdminController@add error messages: ' . $error->getMessage());
+            Log::info('AdminController@add error_bag: ' . $error->getMessage());
             $message = "Unable to complete request.";
             return response()->json(['message' => $message], 500);
         }
@@ -180,7 +189,10 @@ class AdminController extends Controller
         $this->rules['link'] = 'required|regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/';
         $validator = Validator::make($request->all() , $this->rules); 
         if ($validator->fails()) {
-            return response()->json(['message' => 'unable to complete request', 'error messages' => $validator->errors()]);
+            return response()->json([
+                'message' => 'unable to complete request', 
+                'error_bag' => $validator->errors()
+            ], 422);
         }
 
         $resource = ResourceModel::where('id', $request->id)->first();
@@ -216,7 +228,10 @@ class AdminController extends Controller
         $this->rules['html'] = 'required';
         $validator = Validator::make($request->all() , $this->rules); 
         if ($validator->fails()) {
-            return response()->json(['message' => 'unable to complete request', 'error messages' => $validator->errors()]);
+            return response()->json([
+                'message' => 'unable to complete request', 
+                'error_bag' => $validator->errors()
+            ], 422);
         }
 
         $resource = ResourceModel::where('id', $request->id)->first();
@@ -250,7 +265,10 @@ class AdminController extends Controller
         $this->rules['file_upload'] = 'sometimes|mimes:pdf';
         $validator = Validator::make($request->all() , $this->rules); 
         if ($validator->fails()) {
-            return response()->json(['message' => 'unable to complete request', 'error messages' => $validator->errors()]);
+            return response()->json([
+                'message' => 'unable to complete request', 
+                'error_bag' => $validator->errors()
+            ], 422);
         }
 
         $resource = ResourceModel::where('id', $request->id)->first();
