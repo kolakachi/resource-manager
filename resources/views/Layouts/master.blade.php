@@ -15,8 +15,8 @@
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Muli|Raleway&amp;display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nunito&amp;display=swap" rel="stylesheet">
-
-    <link href="{{ asset('css/app.css') }}?v=2" rel="stylesheet">
+    @yield('styles')
+     <link href="{{ asset('css/app.css') }}?v=2" rel="stylesheet">
     <!-- Styles -->
     <style>
         .el-notification__content {
@@ -38,10 +38,10 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                <a class="nav-link {{ ($page == "home")? 'active': ''}}" aria-current="page" href="#">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Admin</a>
+                <a class="nav-link {{ ($page == "admin")? 'active': ''}}" href="#">Admin</a>
               </li>
             </ul>
           </div>
@@ -53,6 +53,8 @@
             @yield('content')
         </main>
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    @yield('scripts')  
 
     <script src="{{ asset('js/app.js') }}?v=2"></script>
 </body>

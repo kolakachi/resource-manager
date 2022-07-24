@@ -21,3 +21,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('/admin/store', [AdminController::class,'store'])->name('admin.store');
 Route::get('/admin/list', [AdminController::class,'list'])->name('admin.list');
+Route::delete('/admin/delete', [AdminController::class, 'delete'])->name('admin.delete');    
+Route::post('/admin/update', [AdminController::class, 'update'])->name('admin.update');    
+
